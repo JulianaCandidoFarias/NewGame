@@ -13,15 +13,16 @@ down = false;
 control_x = 0;
 control_y = 0;
 
+//Player Movematation Variables
 velx = 0;
 vely = 0;
 
 step = function(){
 
-	left	= keyboard_check(ord("A"));
-	right	= keyboard_check(ord("D"));
-	up		= keyboard_check(ord("W"));
-	down	= keyboard_check(ord("S"));
+	left	= keyboard_check(ord("A")) or keyboard_check(vk_left);
+	right	= keyboard_check(ord("D")) or keyboard_check(vk_right);
+	up		= keyboard_check(ord("W")) or keyboard_check(vk_up);
+	down	= keyboard_check(ord("S")) or keyboard_check(vk_down);
 	
 	control_x = right - left;
 	control_y = down - up;
@@ -31,8 +32,23 @@ step = function(){
 	velx = control_x * _can_walk;
 	vely = control_y * _can_walk;
 	
+	if(place_meeting(x + velx, y, obj_coll)){
+		while(!place_meeting(x + sign(velx), y, obj_coll)){
+			x += sign(velx)
+		}
+		velx = 0;
+	}
 	x += velx;
+	
+	
+	if(place_meeting(x, y + vely, obj_coll)){
+		while(!place_meeting(x, y + sign(vely), obj_coll)){
+			y += sign(vely)
+		}
+		vely = 0;
+	}
 	y += vely;
+	
 	
 
 	
@@ -42,7 +58,6 @@ draw = function(){
 	
 	if(vely != 0 or velx != 0){
 		frame += frame_speed;
-		
 		
 		if(vely > 0){
 			sprite = spr_player_walk_down;

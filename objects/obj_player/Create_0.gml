@@ -1,4 +1,4 @@
-
+ 
 //Sprite Drawing Variables
 sprite = sprite_index;
 frame = 0;
@@ -16,6 +16,10 @@ control_y = 0;
 //Player Movematation Variables
 velx = 0;
 vely = 0;
+
+//Player Camera 
+my_camera = instance_create_layer(0, 0, layer, obj_camera);
+my_camera.my_target = id;
 
 step = function(){
 

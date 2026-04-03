@@ -13,8 +13,8 @@
   ],
   "name":"Room1",
   "parent":{
-    "name":"NewGame",
-    "path":"NewGame.yyp",
+    "name":"Rooms",
+    "path":"folders/Rooms.yy",
   },
   "parentRoom":null,
   "physicsSettings":{
